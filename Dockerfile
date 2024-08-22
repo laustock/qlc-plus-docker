@@ -4,8 +4,6 @@ USER root
 
 WORKDIR /QLC/pkg
 
-ARG QLC_VERSION=4.13.1
-
 ENV QLC_DEPENDS="\
                 libasound2 \
                 libfftw3-double3 \
