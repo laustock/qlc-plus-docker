@@ -2,7 +2,7 @@ FROM debian@sha256:382967fd7c35a0899ca3146b0b73d0791478fba2f71020c7aa8c27e3a4f26
 
 USER root
 
-WORKDIR /QLC/pkg
+#WORKDIR /QLC/pkg
 
 ENV QLC_DEPENDS="\
                 libasound2 \
@@ -22,13 +22,13 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
                ${QLC_DEPENDS} 
 
-RUN apt-get clean
-
 ARG QLC_VERSION=4.13.1
-ADD https://www.qlcplus.org/downloads/${QLC_VERSION}/qlcplus_${QLC_VERSION}_amd64.deb /QLC/pkg/qlcplus.deb
+ADD https://www.qlcplus.org/downloads/${QLC_VERSION}/qlcplus_${QLC_VERSION}_amd64.deb qlcplus.deb
 
 RUN dpkg -i qlcplus.deb
 
-#VOLUME /QLC
+VOLUME /QLC
 
-#CMD qlcplus -w -o /QLC/Qlc_Plus_PRJ.qxw -p -wp 9999
+CMD export QT_QPA_PLATFORM=offscreen
+
+CMD qlcplus -w -o /QLC/*.qxw -p -wp 9999
