@@ -1,4 +1,4 @@
-FROM jlesage/baseimage-gui@sha256:4f962b2a234a4093db55ace89786ff2ad3c663a553c7a1b9ef451bb7e8a91ea3
+FROM debian@sha256:382967fd7c35a0899ca3146b0b73d0791478fba2f71020c7aa8c27e3a4f26672
 
 USER root
 
@@ -29,6 +29,6 @@ ADD https://www.qlcplus.org/downloads/${QLC_VERSION}/qlcplus_${QLC_VERSION}_amd6
 
 RUN dpkg -i qlcplus.deb
 
-VOLUME /QLC
+#VOLUME /QLC
 
-CMD qlcplus -w -o /QLC/Qlc_Plus_PRJ.qxw -p -wp 9999
+#CMD qlcplus -w -o /QLC/Qlc_Plus_PRJ.qxw -p -wp 9999
