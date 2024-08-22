@@ -2,7 +2,7 @@ FROM debian@sha256:382967fd7c35a0899ca3146b0b73d0791478fba2f71020c7aa8c27e3a4f26
 
 USER root
 
-#WORKDIR /QLC/pkg
+#COPY qlc+_demoV2.qxw /QLC/qlc_prj.qxw
 
 ENV QLC_DEPENDS="\
                 libasound2 \
@@ -27,6 +27,8 @@ ADD https://www.qlcplus.org/downloads/${QLC_VERSION}/qlcplus_${QLC_VERSION}_amd6
 
 RUN dpkg -i qlcplus.deb
 
+#WORKDIR /QLC
+
 VOLUME /QLC
 
-CMD ["export QT_QPA_PLATFORM=offscreen", "qlcplus -w -o /QLC/*.qxw -p -wp 9999"]
+#CMD ["export QT_QPA_PLATFORM=offscreen", "qlcplus"]
