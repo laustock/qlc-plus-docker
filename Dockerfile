@@ -13,6 +13,6 @@ RUN dpkg -i /QLC/pkg/qlcplus_${QLC_VERSION}_amd64.deb
 
 WORKDIR /QLC
 
-ADD Qlc_Plus_PRJ.qxw /QLC/
+ADD Qlc_Plus_PRJ.qxw /QLC/Qlc_Plus_PRJ.qxw
 
 CMD qlcplus -w -o Qlc_Plus_PRJ.qxw -p -wp 9999
