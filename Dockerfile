@@ -20,9 +20,10 @@ ENV QLC_DEPENDS="\
 
 RUN apt-get update 
 
-RUN apt-get install -y install\
-               ${QLC_DEPENDS}
-
+RUN \
+    apt-get install -y install\
+        ${QLC_DEPENDS}
+        
 RUN apt-get clean
 
 ARG QLC_VERSION=4.13.1
