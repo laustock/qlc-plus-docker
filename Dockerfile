@@ -15,12 +15,14 @@ ENV QLC_DEPENDS="\
                 libqt5network5 \
                 libqt5script5 \
                 libqt5widgets5 \
-                libusb-0.1-4"
+                libusb-0.1-4\
+		libxcb-xinerama0"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
                ${QLC_DEPENDS} \
                xvfb \
+	       xcb\	
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ARG QLC_VERSION=4.12.1
