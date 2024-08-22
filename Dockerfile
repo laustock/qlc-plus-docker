@@ -18,12 +18,10 @@ ENV QLC_DEPENDS="\
                 libqt5serialport5 \
                 libusb-1.0-0" 
 
-RUN apt-get update 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+               ${QLC_DEPENDS} 
 
-RUN \
-    apt-get install -y install\
-        ${QLC_DEPENDS}
-        
 RUN apt-get clean
 
 ARG QLC_VERSION=4.13.1
