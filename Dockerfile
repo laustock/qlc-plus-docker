@@ -3,6 +3,7 @@ FROM debian@sha256:382967fd7c35a0899ca3146b0b73d0791478fba2f71020c7aa8c27e3a4f26
 USER root
 
 #COPY qlc+_demoV2.qxw /QLC/qlc_prj.qxw
+COPY qlcplus.sh /QLC/entrypoint.sh
 
 ENV QLC_DEPENDS="\
                 libasound2 \
@@ -31,9 +32,9 @@ RUN dpkg -i qlcplus.deb
 
 #WORKDIR /QLC
 
-RUN export QT_QPA_PLATFORM=offscreen
-
 VOLUME /QLC
 
-CMD ["qlcplus -w"]
+ENTRYPOINT [ "/QLC/entrypoint.sh" ]
+
+#CMD ["qlcplus -w"]
 #ENTRYPOINT ["qlcplus -w -o /QLC/qlc.qxw -p"]
