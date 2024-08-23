@@ -1,8 +1,21 @@
 # QLC+ dockerfile
-Dockerfile to build a docker image for opensourced lightning control application QLC+
 
-This dockerfile will make a image which makes an linux alpine instance where QLC+ will installed with dpkg.
+This repo was starte by me Laurenz Stockhamer. HEY!
 
-You can set a volume with your ready QLC+ project to the dir :/QLC/Qlc_Plus_PRJ.qxw and when the container is going to be created it will open it and automaicly start it.
+At first i want to say is no professionelle dockerfile, because I am no expert in makeing dockerfiles so be pls be nice.
 
-When you parse the port 9999 of the container to the host it is also possible to controll the QLC+ project instance over the web-image.
+This dockerfile makes a dockerimage that runs QLC+ in a container with a stable-slim version of debian as baseimage.
+
+QLC+ is a open-source light controll application for more infos see https://qlcplus.org/ or https://github.com/mcallegari/qlcplus/.
+
+The image wich will be made with this dockerfile will open and start the project which you can bind it at the volume /QLC/qlc.qxw it also will be started the web application on the port 9999.
+
+Also make sure that you bind all ports out of the container you need for your communication to your lights, controller, etc.
+
+Also make sure when you build this dockerfile to a image that the qlcplus.sh file is in the same dir. as the dockerfile.
+
+To build this dockerfile:
+ -open a console and go to the dir where you downloaded the files
+ -then run this command sudo docker image build -t name-you-want-for-this-image .
+ -do not forget the point on the end of the command
+ -now you have installed this image on your machine and you can create a container with QLC+!
