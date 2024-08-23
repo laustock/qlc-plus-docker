@@ -1,8 +1,5 @@
 FROM debian@sha256:382967fd7c35a0899ca3146b0b73d0791478fba2f71020c7aa8c27e3a4f26672
 
-USER root
-
-#COPY qlc+_demoV2.qxw /QLC/qlc_prj.qxw
 COPY qlcplus.sh /QLC/entrypoint.sh
 
 ENV QLC_DEPENDS="\
@@ -30,15 +27,10 @@ ADD https://www.qlcplus.org/downloads/${QLC_VERSION}/qlcplus_${QLC_VERSION}_amd6
 
 RUN dpkg -i qlcplus.deb
 
-#WORKDIR /QLC
-
 EXPOSE 9999/tcp
-EXPOSE 56000/udp
-EXPOSE 57000/udp
 
 VOLUME /QLC
 
-ENTRYPOINT sudo /QLC/entrypoint.sh
+ENTRYPOINT /bin/sh /QLC/entrypoint.sh
 
-#CMD ["qlcplus -w"]
-#ENTRYPOINT ["qlcplus -w -o /QLC/qlc.qxw -p"]
+CMD /bin/bash
