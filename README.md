@@ -19,3 +19,13 @@ To build this dockerfile:
  -then run this command sudo docker image build -t name-you-want-for-this-image .
  -do not forget the point on the end of the command
  -now you have installed this image on your machine and you can create a container with QLC+!
+
+ Here is also example commands to start build the dockerfile and to start a container with the image. :)
+
+build dockerfile to image:
+
+sudo docker image build -t qlcsplus .
+
+start container:
+
+sudo docker run -it -p 9999:9999 -v /path/to/your/qlc/project.qxw:/QLC/qlc.qxw --name-my_qlcplus qlcplus
