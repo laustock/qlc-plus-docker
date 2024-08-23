@@ -31,7 +31,9 @@ RUN dpkg -i qlcplus.deb
 
 #WORKDIR /QLC
 
+RUN export QT_QPA_PLATFORM=offscreen
+
 VOLUME /QLC
 
-#CMD ["export QT_QPA_PLATFORM=offscreen", "qlcplus"]
-ENTRYPOINT ["export QT_QPA_PLATFORM=offscreen", "qlcplus -w -o /QLC/qlc.qxw -p"]
+CMD ["qlcplus -w"]
+#ENTRYPOINT ["qlcplus -w -o /QLC/qlc.qxw -p"]
