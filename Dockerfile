@@ -32,9 +32,13 @@ RUN dpkg -i qlcplus.deb
 
 #WORKDIR /QLC
 
+EXPOSE 9999/tcp
+EXPOSE 56000/udp
+EXPOSE 57000/udp
+
 VOLUME /QLC
 
-ENTRYPOINT [ "/QLC/entrypoint.sh" ]
+ENTRYPOINT sudo /QLC/entrypoint.sh
 
 #CMD ["qlcplus -w"]
 #ENTRYPOINT ["qlcplus -w -o /QLC/qlc.qxw -p"]
