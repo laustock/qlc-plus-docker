@@ -22,10 +22,14 @@ To build this dockerfile:
 
  Here is also example commands to start build the dockerfile and to start a container with the image. :)
 
-build dockerfile to image:
+Build dockerfile to image:
 
 sudo docker image build -t qlcsplus .
 
-start container:
+Start container:
 
 sudo docker run -it -p 9999:9999 -v /path/to/your/qlc/project.qxw:/QLC/qlc.qxw --name-my_qlcplus qlcplus
+
+Here is the link to the docker image on the docker hub:
+
+https://hub.docker.com/r/averyout48/qlc-plus-docker
