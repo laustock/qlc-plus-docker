@@ -2,7 +2,7 @@
 
 This repo was starte by me Laurenz Stockhamer. HEY!
 
-At first i want to say is no professionelle dockerfile, because I am no expert in makeing dockerfiles so be pls be nice.
+At first i want to say that this is no professionelle dockerfile, because I am no expert in makeing dockerfiles so pls be nice.
 
 This dockerfile makes a dockerimage that runs QLC+ in a container with a stable-slim version of debian as baseimage.
 
