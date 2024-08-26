@@ -20,55 +20,57 @@
 #-now you have installed this image on machine and can create a container!
 
 #base-image
-FROM debian@sha256:382967fd7c35a0899ca3146b0b73d0791478fba2f71020c7aa8c27e3a4f26672
+#FROM debian@sha256:382967fd7c35a0899ca3146b0b73d0791478fba2f71020c7aa8c27e3a4f26672
+FROM ubuntu@sha256:8a37d68f4f73ebf3d4efafbcf66379bf3728902a8038616808f04e34a9ab63ee
 
 #copy start script
-COPY qlcplus.sh /QLC/entrypoint.sh
-
-#Download the required pckgs for QLC+ and QLC+ itself
-ENV QLC_DEPENDS="\
-                libasound2 \
-                libfftw3-double3 \
-                libftdi1-2 \
-                libqt5core5a \
-                libqt5gui5 \
-                libqt5multimedia5 \
-                libqt5multimediawidgets5 \
-                libqt5network5 \
-                libqt5script5 \
-                libqt5widgets5 \
-                libqt5serialport5 \
-                libusb-1.0-0\
-                libxcb-cursor0\
-                libxcb-xinerama0" 
-
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-               ${QLC_DEPENDS} 
-
-RUN apt-get clean
-
-ARG QLC_VERSION=4.13.1
-ADD https://www.qlcplus.org/downloads/${QLC_VERSION}/qlcplus_${QLC_VERSION}_amd64.deb qlcplus.deb
-
-#installing QLC+
-RUN dpkg -i qlcplus.deb
-
-EXPOSE 9999/tcp
+#COPY qlcplus.sh /QLC/entrypoint.sh
 
 #installing lxde as desktop env
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends lxde-core
-RUN apt-get clean
+RUN apt-get update && \
+    DBEIAN_FRONTEND=noninteractive apt-get install -y kubuntu-desktop xrdp && \
+    adduser xrdp ssl-cert
 
-#installing XRDP for remote desktop access
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends xrdp
-RUN apt-get clean
+RUN useradd -m testuser -p $(openssl passwd 1234) && \
+    usermod -aG sudo testuser
 
-VOLUME /QLC
+#Download the required pckgs for QLC+ and QLC+ itself
+# ENV QLC_DEPENDS="\
+#                 libasound2 \
+#                 libfftw3-double3 \
+#                 libftdi1-2 \
+#                 libqt5core5a \
+#                 libqt5gui5 \
+#                 libqt5multimedia5 \
+#                 libqt5multimediawidgets5 \
+#                 libqt5network5 \
+#                 libqt5script5 \
+#                 libqt5widgets5 \
+#                 libqt5serialport5 \
+#                 libusb-1.0-0\
+#                 libxcb-cursor0\
+#                 libxcb-xinerama0" 
 
-#execute start script
-ENTRYPOINT /bin/sh /QLC/entrypoint.sh
+# RUN apt-get update \
+#     && apt-get install -y --no-install-recommends \
+#                ${QLC_DEPENDS} 
 
-CMD /bin/bash
+# RUN apt-get clean
+
+# ARG QLC_VERSION=4.13.1
+# ADD https://www.qlcplus.org/downloads/${QLC_VERSION}/qlcplus_${QLC_VERSION}_amd64.deb qlcplus.deb
+
+# #installing QLC+
+# RUN dpkg -i qlcplus.deb
+
+# EXPOSE 9999
+EXPOSE 3389
+
+# VOLUME /QLC
+
+# #execute start script
+# ENTRYPOINT /bin/sh /QLC/entrypoint.sh
+
+#CMD /bin/bash
+
+CMD service dbus start ; /usr/lib/systemd-logind & service xrdp start ; bash
