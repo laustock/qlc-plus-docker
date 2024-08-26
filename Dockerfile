@@ -71,6 +71,6 @@ EXPOSE 3389
 # #execute start script
 # ENTRYPOINT /bin/sh /QLC/entrypoint.sh
 
-#CMD /bin/bash
+CMD /bin/bash
 
-CMD service dbus start ; /usr/lib/systemd/systemd-logind & service xrdp start ; bash
+#CMD service dbus start ; /usr/lib/systemd/systemd-logind & service xrdp start ; bash
