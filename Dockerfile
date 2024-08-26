@@ -19,12 +19,13 @@
 #-do not forget the point on the end of the command
 #-now you have installed this image on machine and can create a container!
 
-#FROM debian@sha256:382967fd7c35a0899ca3146b0b73d0791478fba2f71020c7aa8c27e3a4f26672
+#base-image
+FROM debian@sha256:382967fd7c35a0899ca3146b0b73d0791478fba2f71020c7aa8c27e3a4f26672
 
-FROM elestio/docker-desktop-vnc@sha256:653ee84f42ea6d36cfc2f62ff02054f5fcd3eb77fac8bea9682b61b916dc589b
-
+#copy start script
 COPY qlcplus.sh /QLC/entrypoint.sh
 
+#Download the required pckgs for QLC+ and QLC+ itself
 ENV QLC_DEPENDS="\
                 libasound2 \
                 libfftw3-double3 \
@@ -45,15 +46,24 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
                ${QLC_DEPENDS} 
 
+RUN apt-get clean
+
 ARG QLC_VERSION=4.13.1
 ADD https://www.qlcplus.org/downloads/${QLC_VERSION}/qlcplus_${QLC_VERSION}_amd64.deb qlcplus.deb
 
+#installing QLC+
 RUN dpkg -i qlcplus.deb
 
 EXPOSE 9999/tcp
 
 VOLUME /QLC
 
+#installing Remina for remote desktop access
+RUN apt update
+RUN apt install -t stretch-backports remmina remmina-plugin-rdp remmina-plugin-secret remmina-plugin-spice
+RUN apt-get clean
+
+#execute start script
 ENTRYPOINT /bin/sh /QLC/entrypoint.sh
 
 CMD /bin/bash
