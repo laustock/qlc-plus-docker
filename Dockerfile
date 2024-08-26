@@ -56,11 +56,17 @@ RUN dpkg -i qlcplus.deb
 
 EXPOSE 9999/tcp
 
-VOLUME /QLC
+#installing lxde as desktop env
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends lxde-core
+RUN apt-get clean
 
-#installing Remina for remote desktop access
-RUN apt update
-RUN apt install xrdp
+#installing XRDP for remote desktop access
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends xrdp
+RUN apt-get clean
+
+VOLUME /QLC
 
 #execute start script
 ENTRYPOINT /bin/sh /QLC/entrypoint.sh
