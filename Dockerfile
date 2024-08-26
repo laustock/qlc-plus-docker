@@ -60,8 +60,7 @@ VOLUME /QLC
 
 #installing Remina for remote desktop access
 RUN apt update
-RUN apt install -t stretch-backports remmina remmina-plugin-rdp remmina-plugin-secret remmina-plugin-spice
-RUN apt-get clean
+RUN apt install xrdp
 
 #execute start script
 ENTRYPOINT /bin/sh /QLC/entrypoint.sh
