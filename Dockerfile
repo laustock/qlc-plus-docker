@@ -21,14 +21,14 @@
 
 #base-image
 #FROM debian@sha256:382967fd7c35a0899ca3146b0b73d0791478fba2f71020c7aa8c27e3a4f26672
-FROM ubuntu@sha256:8a37d68f4f73ebf3d4efafbcf66379bf3728902a8038616808f04e34a9ab63ee
+FROM ubuntu@sha256:94c7f49d0a4485b5ea6f00c14aebb699bc14d3e16ad4d0bd44042da6016c510a
 
 #copy start script
 #COPY qlcplus.sh /QLC/entrypoint.sh
 
 #installing lxde as desktop env
-RUN apt-get update && \
-    DBEIAN_FRONTEND=noninteractive apt-get install -y kubuntu-desktop xrdp && \
+RUN apt update && \
+    DEBIAN_FRONTEND=noninteractive apt install -y kubuntu-desktop xrdp && \
     adduser xrdp ssl-cert
 
 RUN useradd -m testuser -p $(openssl passwd 1234) && \
@@ -73,4 +73,4 @@ EXPOSE 3389
 
 #CMD /bin/bash
 
-CMD service dbus start ; /usr/lib/systemd-logind & service xrdp start ; bash
+CMD service dbus start ; /usr/lib/systemd/systemd-logind & service xrdp start ; bash
