@@ -59,8 +59,12 @@ ADD https://www.qlcplus.org/downloads/${QLC_VERSION}/qlcplus_${QLC_VERSION}_amd6
 #installing QLC+
 RUN dpkg -i qlcplus.deb
 
+#exposing the ports you need to acces into the container
 EXPOSE 9999
 EXPOSE 3389
+
+#volume to copy the qlc+ project and other files
+VOLUME [ "/QLC" ]
 
 #execute start script
 ENTRYPOINT ["bash", "/QLC/docker-entrypoint.sh"]
