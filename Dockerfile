@@ -26,13 +26,6 @@ USER root
 #copy start script
 COPY qlcplus.sh /QLC/docker-entrypoint.sh
 
-#installing lxde as desktop env
-RUN apt update && apt upgrade
-RUN apt install -y sudo lxde xrdp
-RUN adduser xrdp ssl-cert
-RUN useradd -m admin -p $(openssl passwd 1234)
-RUN usermod -aG sudo admin
-
 #Download the required pckgs for QLC+ and QLC+ itself
 ENV QLC_DEPENDS="\
                 libasound2 \
@@ -59,8 +52,14 @@ ADD https://www.qlcplus.org/downloads/${QLC_VERSION}/qlcplus_${QLC_VERSION}_amd6
 #installing QLC+
 RUN dpkg -i qlcplus.deb
 
+#exposing ports to connect with qlc+ web 
 EXPOSE 9999
-EXPOSE 3389
+
+#enable display on x server
+ENV DISPLAY=host.docker.internal:0.0
+
+#volume to copy the qlc+ project and other files
+VOLUME [ "/QLC" ]
 
 #execute start script
 ENTRYPOINT ["bash", "/QLC/docker-entrypoint.sh"]
