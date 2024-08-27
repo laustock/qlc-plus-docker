@@ -63,6 +63,6 @@ EXPOSE 9999
 EXPOSE 3389
 
 #execute start script
-ENTRYPOINT ["/QLC/docker-entrypoint.sh"]
+ENTRYPOINT ["bash", "/QLC/docker-entrypoint.sh"]
 
 CMD ["bash"]
