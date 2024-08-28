@@ -28,7 +28,7 @@ COPY qlcplus.sh /QLC/docker-entrypoint.sh
 
 #installing lxde as desktop env
 RUN apk update && apk upgrade
-RUN apk add --allow-untrusted sudo xfce4 xfce4-terminal xrdp xorgxrdp iputils-ping apt dpkg
+RUN apk add --allow-untrusted sudo xfce4 xfce4-terminal xrdp xorgxrdp iputils-ping apt dpkg bash
 RUN useradd -m admin -p $(openssl passwd 1234)
 RUN usermod -aG sudo admin
 
