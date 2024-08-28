@@ -2,8 +2,8 @@
 
 echo "Running entrypoint script"
 
-rc-service xrdp start
-rc-service xrdp-sesman start
+xrdp
+xrdp-sesman
 
 export QT_QPA_PLATFORM=offscreen
 
