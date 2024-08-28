@@ -29,8 +29,8 @@ COPY qlcplus.sh /QLC/docker-entrypoint.sh
 #installing lxde as desktop env
 RUN apk update && apk upgrade
 RUN apk add --allow-untrusted sudo xfce4 xfce4-terminal xrdp xorgxrdp iputils-ping apt dpkg bash
-RUN useradd -m admin -p $(openssl passwd 1234)
-RUN usermod -aG sudo admin
+RUN setup-user -a admin -p $(openssl passwd 1234)
+RUN adduser admin wheel
 
 #Download the required pckgs for QLC+ and QLC+ itself
 ENV QLC_DEPENDS="\
