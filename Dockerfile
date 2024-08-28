@@ -50,8 +50,8 @@ ENV QLC_DEPENDS="\
                 libxcb-cursor0\
                 libxcb-xinerama0" 
 
-RUN apt-get install -y ${QLC_DEPENDS} 
-RUN apt-get clean
+RUN apt install -y ${QLC_DEPENDS} 
+RUN apt clean
 
 ARG QLC_VERSION=4.13.1
 ADD https://www.qlcplus.org/downloads/${QLC_VERSION}/qlcplus_${QLC_VERSION}_amd64.deb qlcplus.deb
