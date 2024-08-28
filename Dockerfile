@@ -20,8 +20,10 @@
 
 FROM debian@sha256:382967fd7c35a0899ca3146b0b73d0791478fba2f71020c7aa8c27e3a4f26672
 
+#copy entrypoint script out of the dir
 COPY qlcplus.sh /QLC/entrypoint.sh
 
+#install all pckgs needed for QLC+
 ENV QLC_DEPENDS="\
                 libasound2 \
                 libfftw3-double3 \
@@ -38,19 +40,20 @@ ENV QLC_DEPENDS="\
                 libxcb-cursor0\
                 libxcb-xinerama0" 
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-               ${QLC_DEPENDS} 
+RUN apt update && apt upgrade -y
+RUN apt-get install -y ${QLC_DEPENDS} 
 
+#download and install QLC+ Version 4.13.1
 ARG QLC_VERSION=4.13.1
 ADD https://www.qlcplus.org/downloads/${QLC_VERSION}/qlcplus_${QLC_VERSION}_amd64.deb qlcplus.deb
 
 RUN dpkg -i qlcplus.deb
 
-EXPOSE 9999/tcp
+#expose port for web interface
+EXPOSE 9999
 
+#work volume to bind the project in
 VOLUME /QLC
 
-ENTRYPOINT /bin/sh /QLC/entrypoint.sh
-
-CMD /bin/bash
+#entrypoiint bash script --> will be executed every time when a container of this image will be started
+ENTRYPOINT ["bash" , "/QLC/entrypoint.sh"]
