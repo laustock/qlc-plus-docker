@@ -28,7 +28,7 @@ COPY qlcplus.sh /QLC/docker-entrypoint.sh
 
 #installing lxde as desktop env
 RUN apt update && apt upgrade
-RUN apt install -y sudo lxde xrdp
+RUN apt install -y sudo lxde xrdp iputils-ping
 RUN adduser xrdp ssl-cert
 RUN useradd -m admin -p $(openssl passwd 1234)
 RUN usermod -aG sudo admin
@@ -62,9 +62,6 @@ RUN dpkg -i qlcplus.deb
 #exposing the ports you need to acces into the container
 EXPOSE 9999
 EXPOSE 3389
-
-#volume to copy the qlc+ project and other files
-VOLUME [ "/QLC" ]
 
 #execute start script
 ENTRYPOINT ["bash", "/QLC/docker-entrypoint.sh"]
