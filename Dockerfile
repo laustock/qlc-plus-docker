@@ -28,29 +28,31 @@ COPY qlcplus.sh /QLC/docker-entrypoint.sh
 
 #installing lxde as desktop env
 RUN apk update && apk upgrade
-RUN apk add --allow-untrusted sudo xfce4 xfce4-terminal xrdp xorgxrdp iputils-ping apt dpkg bash
-RUN setup-user -a admin
-RUN adduser admin wheel
+RUN apk add --allow-untrusted sudo xfce4 xfce4-terminal xrdp xorgxrdp iputils-ping apt dpkg bash zstd
+#RUN setup-user -a admin1
+RUN adduser -D admin
 
 #Download the required pckgs for QLC+ and QLC+ itself
-ENV QLC_DEPENDS="\
-                libasound2 \
-                libfftw3-double3 \
-                libftdi1-2 \
-                libqt5core5a \
-                libqt5gui5 \
-                libqt5multimedia5 \
-                libqt5multimediawidgets5 \
-                libqt5network5 \
-                libqt5script5 \
-                libqt5widgets5 \
-                libqt5serialport5 \
-                libusb-1.0-0\
-                libxcb-cursor0\
-                libxcb-xinerama0" 
+#ENV QLC_DEPENDS="\
+#                libasound2 \
+#                libfftw3-double3 \
+#                libftdi1-2 \
+#                libqt5core5a \
+#                libqt5gui5 \
+#                libqt5multimedia5 \
+#                libqt5multimediawidgets5 \
+#                libqt5network5 \
+#                libqt5script5 \
+#                libqt5widgets5 \
+#                libqt5serialport5 \
+#                libusb-1.0-0\
+#                libxcb-cursor0\
+#                libxcb-xinerama0" 
 
-RUN apt install -y ${QLC_DEPENDS} 
-RUN apt clean
+#SHELL ["bash", "-c"]
+
+#RUN apt-get install -y ${QLC_DEPENDS} 
+#RUN apt-get clean
 
 ARG QLC_VERSION=4.13.1
 ADD https://www.qlcplus.org/downloads/${QLC_VERSION}/qlcplus_${QLC_VERSION}_amd64.deb qlcplus.deb
