@@ -20,17 +20,18 @@
 #-now you have installed this image on machine and can create a container!
 
 #base-image
-FROM amd64/alpine@sha256:732b8b93aa61b5a5307f3bb85396ec7396c7d2379edf5bff2f2d104ea5d06902
+FROM alpine@sha256:b93f4f6834d5c6849d859a4c07cc88f5a7d8ce5fb8d2e72940d8edd8be343c04
 USER root
 
 #copy start script
 COPY qlcplus.sh /QLC/docker-entrypoint.sh
 
+#copy QLC+
+COPY qlcplus-qt5-4.13.1-10.1.src.rpm /QLC/qlcplus.rpm
+
 #installing lxde as desktop env
 #RUN apk update && apk upgrade
-RUN apk add --allow-untrusted sudo xfce4 xfce4-terminal xrdp xorgxrdp iputils-ping apt dpkg bash zstd
-SHELL [ "bash" , "-c" ]
-#RUN setup-user -a admin1
+RUN apk add --allow-untrusted xorg-server xfce4 xfce4-terminal xfce4-screensaver lightdm-gtk-greeter xrdp iputils-ping rpm bash openrc
 RUN adduser -D admin
 
 #Download the required pckgs for QLC+ and QLC+ itself
@@ -50,20 +51,19 @@ RUN adduser -D admin
 #                libxcb-cursor0\
 #                libxcb-xinerama0" 
 
-#SHELL ["bash", "-c"]
-
 #RUN apt-get install -y ${QLC_DEPENDS} 
 #RUN apt-get clean
 
-ARG QLC_VERSION=4.13.1
-ADD https://www.qlcplus.org/downloads/${QLC_VERSION}/qlcplus_${QLC_VERSION}_amd64.deb qlcplus.deb
+#ARG QLC_VERSION=4.13.1
+#ADD https://www.qlcplus.org/downloads/${QLC_VERSION}/qlcplus_${QLC_VERSION}_amd64.deb qlcplus.deb
 
 #installing QLC+
-RUN dpkg -i qlcplus.deb
+RUN rpm -i /QLC/qlcplus.rpm
 
 #exposing the ports you need to acces into the container
 EXPOSE 9999
 EXPOSE 3389
 
 #execute start script
-ENTRYPOINT ["bash", "/QLC/docker-entrypoint.sh"]
+#ENTRYPOINT ["sh", "/QLC/docker-entrypoint.sh"]
+CMD ["sh"]
