@@ -63,5 +63,3 @@ VOLUME [ "/QLC" ]
 
 #execute start script
 ENTRYPOINT ["bash", "/QLC/docker-entrypoint.sh"]
-
-CMD ["bash"]
