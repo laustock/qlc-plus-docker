@@ -20,15 +20,16 @@
 #-now you have installed this image on machine and can create a container!
 
 #base-image
-FROM alpine@sha256:b93f4f6834d5c6849d859a4c07cc88f5a7d8ce5fb8d2e72940d8edd8be343c04
+FROM amd64/alpine@sha256:732b8b93aa61b5a5307f3bb85396ec7396c7d2379edf5bff2f2d104ea5d06902
 USER root
 
 #copy start script
 COPY qlcplus.sh /QLC/docker-entrypoint.sh
 
 #installing lxde as desktop env
-RUN apk update && apk upgrade
+#RUN apk update && apk upgrade
 RUN apk add --allow-untrusted sudo xfce4 xfce4-terminal xrdp xorgxrdp iputils-ping apt dpkg bash zstd
+SHELL [ "bash" , "-c" ]
 #RUN setup-user -a admin1
 RUN adduser -D admin
 
