@@ -1,4 +1,4 @@
-## QLC+ dockerfile qlcplus-only-web
+## QLC+ dockerfile (qlcplus-only-web)
 
 This branch of the repo has the same files like the main branch.
 
