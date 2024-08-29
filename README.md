@@ -19,7 +19,9 @@ docker run -d -p 9999:9999 -p 3389:3389 -v /cofigurated/QLC/+/project.qxw:/QLC/q
 ````
 
 for the rdp access the user credentials are hardcoded in the dockerfile (so you can changed it any time)
+
 username: admin
+
 passwd: 1234
 
 ## License
