@@ -52,8 +52,8 @@ ENV QLC_DEPENDS="\
                 libxcb-xinerama0 \
                 bash" 
 
-RUN apt-get install -y ${QLC_DEPENDS} 
-RUN apt-get clean
+RUN apt install -y ${QLC_DEPENDS} 
+RUN apt clean
 
 #download and install QLC+ Version 4.13.1
 ARG QLC_VERSION=4.13.1
