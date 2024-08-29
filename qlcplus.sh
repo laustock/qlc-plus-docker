@@ -1,9 +1,8 @@
 #!/bin/bash
+/bin/bash /QLC/qtexport.sh
 
 echo "Running entrypoint script"
 
-service xrdp start
+source qtexport.sh
 
-export QT_QPA_PLATFORM=offscreen
-
-qlcplus -w -o /home/admin/Documents/qlc.qxw -p
+qlcplus -w -o /QLC/qlc.qxw -p
