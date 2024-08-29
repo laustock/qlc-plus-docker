@@ -1,35 +1,30 @@
-# QLC+ dockerfile
+## QLC+ dockerfile (qlcplus-with-desktop)
 
-This repo was starte by me Laurenz Stockhamer. HEY!
+This QLC+ docker version only makes a lxde debian dekstop in the container, which you can reach over rdp on the port 3389 and also auto starts the binded QLC+ project and you also can reach the QLC+ instance over the web access on Port 9999.
 
-At first i want to say that this is no professionelle dockerfile, because I am no expert in makeing dockerfiles so pls be nice.
+## Examples
 
-This dockerfile makes a dockerimage that runs QLC+ in a container with a stable-slim version of debian as baseimage.
+Example command to build the dockerfile:
 
-QLC+ is a open-source light controll application for more infos see https://qlcplus.org/ or https://github.com/mcallegari/qlcplus/.
+first move in the dir. you donwloaded the files (you need also need to download the .sh files)
 
-The image wich will be made with this dockerfile will open and start the project which you can bind it at the volume /QLC/qlc.qxw it also will be started the web application on the port 9999.
+```shell
+docker build -t qlcplus-with-desktop .
+```
 
-Also make sure that you bind all ports out of the container you need for your communication to your lights, controller, etc.
+Example command to start a container of the build image:
 
-Also make sure when you build this dockerfile to a image that the qlcplus.sh file is in the same dir. as the dockerfile.
+```shell
+docker run -d -p 9999:9999 -p 3389:3389 -v /cofigurated/QLC/+/project.qxw:/QLC/qlc.qxw --name qlcplus-with-desktop qlcplus-with-desktop
+````
 
-To build this dockerfile:
- -open a console and go to the dir where you downloaded the files
- -then run this command sudo docker image build -t name-you-want-for-this-image .
- -do not forget the point on the end of the command
- -now you have installed this image on your machine and you can create a container with QLC+!
+for the rdp access the user credentials are hradcoded in the dockerfile (so you can changed it any time)
+username: admin
+passwd: 1234
 
- Here is also example commands to start build the dockerfile and to start a container with the image. :)
+## License
 
-Build dockerfile to image:
+The source code for the site is licensed under the MIT license, which you can find in
+the [LICENSE](https://github.com/laustock/qlc-plus-docker/blob/main/LICENSE) file.
 
-sudo docker image build -t qlcsplus .
-
-Start container:
-
-sudo docker run -it -p 9999:9999 -v /path/to/your/qlc/project.qxw:/QLC/qlc.qxw --name-my_qlcplus qlcplus
-
-Here is the link to the docker image on the docker hub:
-
-https://hub.docker.com/r/averyout48/qlc-plus-docker
+QLC+ and Docker are licensed under the Apache License, Version 2.0. (https://www.apache.org/licenses/LICENSE-2.0)
