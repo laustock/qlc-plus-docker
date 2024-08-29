@@ -1,4 +1,4 @@
-# QLC+ dockerfile
+## QLC+ dockerfile
 
 This dockerfile makes a dockerimage that runs QLC+ in a container with a stable-slim version of debian as baseimage.
 
@@ -29,3 +29,10 @@ sudo docker run -it -p 9999:9999 -v /path/to/your/qlc/project.qxw:/QLC/qlc.qxw -
 Here is the link to the docker image on the docker hub:
 
 https://hub.docker.com/r/averyout48/qlc-plus-docker
+
+## License
+
+The source code for the site is licensed under the MIT license, which you can find in
+the [LICENSE] file.
+
+QLC+ and Docker are licensed under the Apache License, Version 2.0. (https://www.apache.org/licenses/LICENSE-2.0)
