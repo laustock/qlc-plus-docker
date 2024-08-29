@@ -22,6 +22,7 @@ FROM debian@sha256:382967fd7c35a0899ca3146b0b73d0791478fba2f71020c7aa8c27e3a4f26
 
 #copy entrypoint script out of the dir
 COPY qlcplus.sh /QLC/entrypoint.sh
+COPY qtexport.sh /QLC/qtexport.sh
 
 #install all pckgs needed for QLC+
 ENV QLC_DEPENDS="\
@@ -36,9 +37,10 @@ ENV QLC_DEPENDS="\
                 libqt5script5 \
                 libqt5widgets5 \
                 libqt5serialport5 \
-                libusb-1.0-0\
-                libxcb-cursor0\
-                libxcb-xinerama0" 
+                libusb-1.0-0 \
+                libxcb-cursor0 \
+                libxcb-xinerama0 \
+                bash" 
 
 RUN apt update && apt upgrade -y
 RUN apt-get install -y ${QLC_DEPENDS} 
@@ -55,5 +57,7 @@ EXPOSE 9999
 #work volume to bind the project in
 VOLUME /QLC
 
-#entrypoiint bash script --> will be executed every time when a container of this image will be started
-ENTRYPOINT ["bash" , "/QLC/entrypoint.sh"]
+ENV QT_QPA_PLATFORM=offscreen
+
+#entrypoint bash script --> will be executed every time when a container of this image will be started
+ENTRYPOINT ["/bin/bash" , "/QLC/entrypoint.sh"]
