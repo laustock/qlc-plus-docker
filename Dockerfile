@@ -31,7 +31,7 @@ COPY qlcplus-qt5-4.13.1-10.1.src.rpm /QLC/qlcplus.rpm
 
 #installing lxde as desktop env
 #RUN apk update && apk upgrade
-RUN apk add --allow-untrusted xorg-server xfce4 xfce4-terminal xfce4-screensaver lightdm-gtk-greeter xrdp iputils-ping rpm bash openrc
+RUN apk add --allow-untrusted xorg-server xfce4 xfce4-terminal xfce4-screensaver lightdm-gtk-greeter alpine-conf xrdp iputils-ping rpm bash openrc
 RUN adduser -D admin
 
 #Download the required pckgs for QLC+ and QLC+ itself

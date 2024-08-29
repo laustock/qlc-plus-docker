@@ -1,6 +1,6 @@
 # QLC+ dockerfile
 
-This repo was starte by me Laurenz Stockhamer. HEY!
+This repo was starte by me Laurenz Stockhamer.
 
 At first i want to say that this is no professionelle dockerfile, because I am no expert in makeing dockerfiles so pls be nice.
 
