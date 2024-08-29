@@ -1,5 +1,6 @@
 #!/bin/bash
+/bin/bash /QLC/qtexport.sh
 
-export QT_QPA_PLATFORM=offscreen
+source qtexport.sh
 
 qlcplus -w -o /QLC/qlc.qxw -p
