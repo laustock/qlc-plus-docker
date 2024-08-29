@@ -18,7 +18,7 @@ Example command to start a container of the build image:
 docker run -d -p 9999:9999 -p 3389:3389 -v /cofigurated/QLC/+/project.qxw:/QLC/qlc.qxw --name qlcplus-with-desktop qlcplus-with-desktop
 ````
 
-for the rdp access the user credentials are hradcoded in the dockerfile (so you can changed it any time)
+for the rdp access the user credentials are hardcoded in the dockerfile (so you can changed it any time)
 username: admin
 passwd: 1234
 
