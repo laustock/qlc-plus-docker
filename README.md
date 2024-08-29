@@ -10,6 +10,8 @@ Also make sure that you bind all ports out of the container you need for your co
 
 Also make sure when you build this dockerfile to a image that the .sh files are in the same dir. as the dockerfile.
 
+This docker-image which you get after building this dockerfile or when you pull the image from docker-hub was tested on a windows machine and on a debian buster/10 machine. So it is possible that the image do not function on a other OS.
+
 ## Exambles
 
 build dockefile:
