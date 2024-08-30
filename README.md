@@ -30,7 +30,9 @@ QLC+:
 
 QLC+ is a open sourced lightning control application for more informations look in the following links.
 
-@@ -20,6 +17,11 @@ QLC+ is a open sourced lightning control application for more informations look
+[QLC+-Website](https://qlcplus.org/)
+
+[QLC+-Repo](https://github.com/mcallegari/qlcplus/)
 
 Docker:
 
