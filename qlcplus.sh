@@ -1,5 +1,8 @@
 #!/bin/bash
+/bin/bash /QLC/qtexport.sh
 
-export QT_QPA_PLATFORM=offscreen
+echo "Running entrypoint script"
+
+source qtexport.sh
 
 qlcplus -w -o /QLC/qlc.qxw -p
