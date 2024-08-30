@@ -1,4 +1,4 @@
-#Author: Laurez Stockhamer
+#Author: Laurenz Stockhamer
 #Git-Hub Repo: https://github.com/laustock/qlc-plus-docker/tree/main
 #QLC+: https://qlcplus.org/
 
