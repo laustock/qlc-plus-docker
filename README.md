@@ -1,8 +1,8 @@
 ## QLC+ dockerfile
 
-This dockerfile makes a dockerimage that runs QLC+ in a container with a stable-slim version of debian as baseimage.
+This dockerfile makes a docker image that runs QLC+ in a container with a stable-slim version of debian as baseimage.
 
-QLC+ is a open-source light controll application for more infos see https://qlcplus.org/ or https://github.com/mcallegari/qlcplus/.
+QLC+ is a open-source light control application for more infos see https://qlcplus.org/ or https://github.com/mcallegari/qlcplus/.
 
 The image which will be made with this dockerfile will open and start the project which you can bind it at the volume /QLC/qlc.qxw it also will be started the web application on the port 9999.
 
@@ -12,14 +12,14 @@ Also make sure when you build this dockerfile to a image that the .sh files are 
 
 This docker-image which you get after building this dockerfile or when you pull the image from docker-hub was tested on a windows machine and on a debian buster/10 machine. So it is possible that the image do not function on a other OS.
 
-## Exambles
+## Examples
 
-build dockefile:
+build dockerfile:
 
-go to the dir. you donwloaded the docker file and the .sh filese
+go to the dir. you downloaded the docker file and the .sh files
 
 ```shell
-sudo docker image build -t qlcsplus .
+sudo docker image build -t qlcplus .
 ```
 
 run container
@@ -39,6 +39,20 @@ https://hub.docker.com/r/averyout48/qlc-plus-docker
 When you find any errors in the code or if you have any problems with this dockerfile pls open an issue.
 
 https://github.com/laustock/qlc-plus-docker/issues
+
+## Application Informations
+
+QLC+: 
+
+QLC+ is a open sourced lightning control application for more informations look in the following links.
+
+[QLC+-Website](https://qlcplus.org/)
+
+[QLC+-Repo](https://github.com/mcallegari/qlcplus/)
+
+Docker:
+
+[Docker-Website](https://www.docker.com/)
 
 ## License
 
