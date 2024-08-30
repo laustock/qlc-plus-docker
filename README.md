@@ -24,6 +24,18 @@ username: admin
 
 passwd: 1234
 
+## Application Informations
+
+QLC+: 
+
+QLC+ is a open sourced lightning control application for more informations look in the following links.
+
+@@ -20,6 +17,11 @@ QLC+ is a open sourced lightning control application for more informations look
+
+Docker:
+
+[Docker-Website](https://www.docker.com/)
+
 ## License
 
 The source code for the site is licensed under the MIT license, which you can find in
