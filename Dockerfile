@@ -11,7 +11,7 @@ COPY qlcplus.sh /QLC/entrypoint.sh
 COPY qtexport.sh /QLC/qtexport.sh
 
 #installing lxde as desktop env
-RUN apt update && apt upgrade
+RUN apt-get update && apt-get upgrade -y
 RUN apt install -y sudo lxde xrdp iputils-ping
 RUN adduser xrdp ssl-cert
 RUN useradd -m admin -p $(openssl passwd 1234)
@@ -35,8 +35,8 @@ ENV QLC_DEPENDS="\
                 libxcb-xinerama0 \
                 bash" 
 
-RUN apt install -y ${QLC_DEPENDS} 
-RUN apt clean
+RUN apt-get install -y ${QLC_DEPENDS} 
+RUN apt-get clean
 
 #download and install QLC+ Version 4.13.1
 ARG QLC_VERSION=4.13.1
@@ -50,4 +50,4 @@ EXPOSE 9999
 EXPOSE 3389
 
 #execute start script
-ENTRYPOINT ["bash", "/QLC/docker-entrypoint.sh"]
+ENTRYPOINT ["bash", "/QLC/entrypoint.sh"]

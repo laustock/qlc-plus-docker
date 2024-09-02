@@ -1,8 +1,8 @@
 #!/bin/bash
-/bin/bash /QLC/qtexport.sh
-
 echo "Running entrypoint script"
 
-source qtexport.sh
+source /QLC/qtexport.sh
 
-qlcplus -w -o /QLC/qlc.qxw -p
+service xrdp start
+
+#qlcplus -w -o /home/admin/Documents/qlc.qxw -p
