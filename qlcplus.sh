@@ -1,8 +1,4 @@
 #!/bin/bash
-/bin/bash /QLC/qtexport.sh
-
 echo "Running entrypoint script"
-
-source qtexport.sh
-
+source /QLC/qt_export.sh
 qlcplus -w -o /QLC/qlc.qxw -p
