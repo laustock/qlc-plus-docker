@@ -6,7 +6,7 @@ FROM debian@sha256:382967fd7c35a0899ca3146b0b73d0791478fba2f71020c7aa8c27e3a4f26
 
 #copy entrypoint script out of the dir
 COPY qlcplus.sh /QLC/entrypoint.sh
-COPY qtexport.sh /QLC/qtexport.sh
+COPY qtexport.sh /QLC/qt_export.sh
 
 #install all pckgs needed for QLC+
 ENV QLC_DEPENDS="\
@@ -26,8 +26,9 @@ ENV QLC_DEPENDS="\
                 libxcb-xinerama0 \
                 bash" 
 
-RUN apt update && apt upgrade -y
+RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y ${QLC_DEPENDS} 
+RUN apt-get clean
 
 #download and install QLC+ Version 4.13.1
 ARG QLC_VERSION=4.13.1
@@ -41,7 +42,5 @@ EXPOSE 9999
 #work volume to bind the project in
 VOLUME /QLC
 
-ENV QT_QPA_PLATFORM=offscreen
-
 #entrypoint bash script --> will be executed every time when a container of this image will be started
-ENTRYPOINT ["/bin/bash" , "/QLC/entrypoint.sh"]
+ENTRYPOINT ["bash" , "/QLC/entrypoint.sh"]
